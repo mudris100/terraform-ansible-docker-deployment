@@ -1,0 +1,35 @@
+- name: Install Docker and Deploy Image to EC2
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Check connection
+      ping:
+
+    - name: Install Docker and Python SDK
+      apt:
+        name:
+          - docker.io
+          - python3-docker
+        state: present
+        update_cache: true
+
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Pull image
+      docker_image:
+        name: "mudris100/blog-app:1"
+        source: pull
+
+    - name: Run container
+      docker_container:
+        name: blog-app
+        image: "mudris100/blog-app:1"
+        state: started
+        restart_policy: always
+        ports:
+          - "80:8080"

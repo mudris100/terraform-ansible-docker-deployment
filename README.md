@@ -8,15 +8,15 @@ The deployed application runs inside **Docker** on an **Amazon Web Services** EC
 
 The project demonstrates a typical DevOps workflow:
 
-```
+```text
 Terraform → AWS EC2 → Ansible → Docker → Java Application
 ```
 
 ---
 
-# Architecture
+## Architecture
 
-```
+```text
 Developer
    │
    │ terraform apply
@@ -41,9 +41,9 @@ Application becomes accessible via the EC2 public IP.
 
 ---
 
-# Project Structure
+## Project Structure
 
-```
+```text
 terraform-ansible-docker-deployment
 │
 ├── ansible.cfg
@@ -93,9 +93,9 @@ The Ansible playbook:
 
 ---
 
-# Deployment
+## Deployment
 
-## 1. Create infrastructure
+### 1. Create infrastructure
 
 ```bash
 terraform init
@@ -110,7 +110,7 @@ This creates:
 
 ---
 
-## 2. Deploy application
+### 2. Deploy application
 
 Run:
 
@@ -126,25 +126,25 @@ ansible-playbook deploy.yml -i "$(terraform output -raw ubuntu_public_ip),"
 
 ---
 
-# Application
+## Application
 
 The container runs a Java Spring Boot blog application.
 
 Docker image:
 
-```
+```text
 mudris100/blog-app:1
 ```
 
 The application is exposed on:
 
-```
+```text
 http://EC2_PUBLIC_IP
 ```
 
 ---
 
-# Requirements
+## Requirements
 
 Tools required locally:
 
@@ -156,7 +156,7 @@ Tools required locally:
 
 ---
 
-# Key DevOps Concepts Demonstrated
+## Key DevOps Concepts Demonstrated
 
 This project demonstrates several DevOps practices:
 
@@ -168,7 +168,7 @@ This project demonstrates several DevOps practices:
 
 ---
 
-# Future Improvements
+## Future Improvements
 
 Possible enhancements:
 
